@@ -29,21 +29,15 @@ Congo.setOptions({
     db: {w: 1}
 });
 
-Congo.connect('cmr2', function (err, newModel) {
+Congo.connect('cmr2', function (err, db) {
     
     if (err) {
         throw new Error(err);
     }
     
-    //var myModel = newModel('users', mySchema);
-    
-    //var myModel = model('users', mySchema);
-    //myModel.find({name: 'name'});
-    
-    /*
-    var myModel = db.model('trucken', mySchema);
+    var myModel = db.model('users', mySchema);
+    myModel.find({name: 'name'}, function () {});
     myModel.findOne({}, function () {});
-    */
     
     //var myDocument = myModel({lastname: "salat", firstname: "fish"});
     //myDocument.save(function (err) {});
