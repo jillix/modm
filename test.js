@@ -25,21 +25,58 @@ var mySchema = new Congo.Schema({
 
 Congo.setOptions({
     
-    server: {poolSize: 3},
+    server: {poolSize: 1},
     db: {w: 1}
 });
 
-Congo.connect('cmr2', function (err, db) {
+Congo.connect('crm2', function (err, db) {
     
     if (err) {
         throw new Error(err);
     }
     
+    var query = {};
+    var options = {};
+    var document = {
+        name: 'trucken',
+        age: 27
+    };
+    var callback = function (err) {
+        
+    };
+    
     var myModel = db.model('users', mySchema);
-    myModel.find({name: 'name'}, function () {});
-    myModel.findOne({}, function () {});
     
-    //var myDocument = myModel({lastname: "salat", firstname: "fish"});
-    //myDocument.save(function (err) {});
+    myModel.insert(document, function () {
+        
+        console.log(arguments);
+    });
     
+    /*myModel.remove(query);
+    myModel.rename();
+    myModel.save(query, document);
+    myModel.update(query, document, options);
+    myModel.distinct();
+    myModel.count(query);
+    myModel.drop();
+    myModel.findAndModify(query, document);
+    myModel.findAndRemove(query);
+    myModel.find(query);
+    myModel.findOne(query);
+    myModel.createIndex();
+    myModel.ensureIndex();
+    myModel.indexInformation();
+    myModel.dropIndex();
+    myModel.dropAllIndexes();
+    myModel.reIndex();
+    myModel.mapReduce();
+    myModel.group();
+    myModel.options();
+    myModel.isCapped();
+    myModel.indexExists();
+    myModel.geoNear();
+    myModel.geoHaystackSearch();
+    myModel.indexes();
+    myModel.aggregate();
+    myModel.stats();*/
 });
