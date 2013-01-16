@@ -47,12 +47,12 @@ Congo.connect('crm2', function (err, db) {
     
     var myModel = db.model('users', mySchema);
     
-    myModel.insert(document, function () {
+    /*myModel.insert(document, function () {
         
         console.log(arguments);
     });
     
-    /*myModel.remove(query);
+    myModel.remove(query);
     myModel.rename();
     myModel.save(query, document);
     myModel.update(query, document, options);
