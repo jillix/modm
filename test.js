@@ -37,21 +37,18 @@ Congo.connect('crm2', function (err, db) {
     
     var query = {};
     var options = {};
+    var callback = function (err) {};
     var document = {
         name: 'trucken',
         age: 27
     };
-    var callback = function (err) {
-        
-    };
     
     var myModel = db.model('users', mySchema);
     
-    /*myModel.insert(document, function () {
-        
+    /*
+    myModel.insert(document, function () {
         console.log(arguments);
     });
-    
     myModel.remove(query);
     myModel.rename();
     myModel.save(query, document);
@@ -78,5 +75,6 @@ Congo.connect('crm2', function (err, db) {
     myModel.geoHaystackSearch();
     myModel.indexes();
     myModel.aggregate();
-    myModel.stats();*/
+    myModel.stats();
+    */
 });
