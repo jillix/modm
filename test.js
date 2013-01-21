@@ -1,12 +1,18 @@
 var Congo = require('./lib/index');
 var util = require('util');
 
-var mySchema = new Congo.Schema({
-    _items: {type: Array, index: {sparse: true}},
+var options = {
+    server: {poolSize: 1},
+    db: {w: 1},
+    autoIndex: true
+};
+
+var user = {
+    _items: Array,
     region: String,
     branch: String,
     visRegion: String,
-    customerNr: {type: String, required: true, index: {unique: true}},
+    customerNr: {type: String, required: true},
     email: {type: String, validate: "email", default: "default@email.com"},
     phone: Number,
     company: String,
@@ -21,14 +27,22 @@ var mySchema = new Congo.Schema({
     bizField: String,
     sow: String,
     distributor: String
-});
+};
 
-Congo.setOptions({
-    
-    server: {poolSize: 1},
-    db: {w: 1}
-});
+var userIndexes = [
+    {
+        fields: ['_items'],
+        options: {sparse: true}
+    },
+    {
+        fields: ['customerNr'],
+        options: {unique: true}
+    }
+];
 
+var userSchema = new Congo.Schema(user, userIndexes);
+
+Congo.setOptions(options);
 Congo.connect('crm2', function (err, db) {
     
     if (err) {
@@ -43,13 +57,13 @@ Congo.connect('crm2', function (err, db) {
         age: 27
     };
     
-    var myModel = db.model('users', mySchema);
+    var myModel = db.model('users', userSchema);
     
-    /*
     myModel.insert(document, function () {
         console.log(arguments);
     });
-    myModel.remove(query);
+    
+    /*myModel.remove(query);
     myModel.rename();
     myModel.save(query, document);
     myModel.update(query, document, options);
