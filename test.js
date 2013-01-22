@@ -20,7 +20,10 @@ var user = {
     firstName: String,
     addition: String,
     department: String,
-    adress: {type: String, validate: function () {return true;}},
+    adress: {type: String, validate: function (data) {
+        console.log('validation function adress: ' + data);
+        return true;
+    }},
     pob: String,
     zip: Number,
     city: String,
@@ -53,14 +56,21 @@ Congo.connect('crm2', function (err, db) {
     var options = {};
     var callback = function (err) {};
     var document = {
-        name: 'trucken',
-        age: 27
+        customerNr: 'trucken_doch',
+        adress: 'truckenstrasse 55'
     };
     
     var myModel = db.model('users', userSchema);
     
-    myModel.insert(document, function () {
-        console.log(arguments);
+    myModel.insert(document, function (err) {
+        
+        console.log('INSERT: ' + (err ? err.err : 'ok'));
+        
+        myModel.remove({}, function (err) {
+            
+            console.log('REMOVE: ' + (err ? err.err : 'ok'));
+            db.close();
+        });
     });
     
     /*myModel.remove(query);
