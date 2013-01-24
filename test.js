@@ -7,12 +7,18 @@ var options = {
     autoIndex: true
 };
 
-var user = {
-    _items: Array,
+var nested =  new Congo.Schema({
+    nested: String,
+    schema: String
+});
+
+// TODO nested objects/schemas
+/*var user = {
+    _items: [Array],
     region: String,
     branch: String,
     visRegion: String,
-    customerNr: {type: String, required: true},
+    customerNr: {type: String, required: true, meta: true},
     email: {type: String, validate: "email", default: "default@email.com"},
     phone: Number,
     company: String,
@@ -30,6 +36,23 @@ var user = {
     bizField: String,
     sow: String,
     distributor: String
+};*/
+    
+var user = {
+    array: Array,
+    string: String,
+    number: Number,
+    object: Object,
+    date: Date,
+    schema: nested,
+    
+    arrayObject: [{a: 1, b:2}],
+    arraySchema: [nested],
+    
+    crazy: [{
+        object: Object,
+        schema: nested
+    }]
 };
 
 var userIndexes = [
@@ -55,16 +78,54 @@ Congo.connect('crm2', function (err, db) {
     var query = {};
     var options = {};
     var callback = function (err) {};
+    
     var document = {
-        customerNr: 'trucken_doch',
-        adress: 'truckenstrasse 55'
+        //$set: {
+            array: ['ItemA', 'ItemB'],
+            string: 'string swing',
+            number: 1,
+            object: {attr1: 'A', attr2: 'B'},
+            date: new Date(),
+            //'objectArray.[7].collection': 'trucken1',
+            //'objectArray.$.collection': 'trucken2'
+        //}
+        //$push: {_items: 'value'},
     };
+    
+    /*var document = {
+        //$set: {lname: 'value'},
+        $set: {
+            name: {
+                $whatever: {
+                    first: 'doch',
+                    last: 'trucken'
+                }
+            },
+            
+            andere: 'ahh.. andere'
+        },
+        
+        $trucken: "doch",
+        
+        $rename: {field1: 'value'},
+        $addToSet: {field4: 'value'},
+        $pop: {field5: 'value'},
+        $pullAll: {field6: ['value']},
+        $pull: {field7: 'value'},
+        $pushAll: {field8: ['value']},
+        $push: {field9: 'value'},
+        
+        // ignore this operators
+        $unset: {field3: 'value'},
+        $inc: {field2: 'value'},
+        $bit: { field10: { and: 5 } }
+    };*/
     
     var myModel = db.model('users', userSchema);
     
     myModel.insert(document, function (err) {
         
-        console.log('INSERT: ' + (err ? err.err : 'ok'));
+        console.log('INSERT: ' + (err ? err : 'ok'));
         
         myModel.remove({}, function (err) {
             
