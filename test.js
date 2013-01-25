@@ -44,6 +44,7 @@ var user = {
     number: Number,
     object: Object,
     date: Date,
+    nestedSchema: {trucken: nested},
     schema: nested,
     
     arrayObject: [{a: 1, b:2}],
@@ -86,6 +87,16 @@ Congo.connect('crm2', function (err, db) {
             number: 1,
             object: {attr1: 'A', attr2: 'B'},
             date: new Date(),
+            nestedSchema: {
+                trucken: {
+                    nested: 'trucken doch'
+                }
+            },
+            crazy: [{
+                schema: {
+                    schema: 'schema'
+                }
+            }]
             //'objectArray.[7].collection': 'trucken1',
             //'objectArray.$.collection': 'trucken2'
         //}
