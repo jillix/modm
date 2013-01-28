@@ -37,7 +37,9 @@ var nested =  new Congo.Schema({
     sow: String,
     distributor: String
 };*/
-    
+
+var ary = {a: String, b: Number};
+
 var user = {
     array: Array,
     string: String,
@@ -47,13 +49,15 @@ var user = {
     nestedSchema: {trucken: nested},
     schema: nested,
     
-    arrayObject: [{a: 1, b:2}],
+    arrayObject: [{a: Number, b:Number}],
     arraySchema: [nested],
     
     crazy: [{
         object: Object,
         schema: nested
-    }]
+    }],
+    
+    arrayNested: [ary]
 };
 
 var userIndexes = [
@@ -82,21 +86,27 @@ Congo.connect('crm2', function (err, db) {
     
     var document = {
         //$set: {
-            array: ['ItemA', 'ItemB'],
-            string: 'string swing',
-            number: 1,
-            object: {attr1: 'A', attr2: 'B'},
-            date: new Date(),
-            nestedSchema: {
-                trucken: {
-                    nested: 'trucken doch'
+            //array: ['ItemA', 'ItemB'],
+            //string: 'string swing',
+            //number: 1,
+            //object: {attr1: 'A', attr2: 'B'},
+            //date: new Date(),
+            //nestedSchema: {
+            //    trucken: {
+            //        nested: 'trucken doch'
+            //    }
+            //},
+            crazy: [
+                {
+                    schema: {
+                        schema: 'schema'
+                    }
+                },
+                {
+                    object: {some: 'data'}
                 }
-            },
-            crazy: [{
-                schema: {
-                    schema: 'schema'
-                }
-            }]
+            ],
+            arrayNested: [{a: 'A', b: 2}]
             //'objectArray.[7].collection': 'trucken1',
             //'objectArray.$.collection': 'trucken2'
         //}
