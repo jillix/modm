@@ -12,7 +12,6 @@ var nested =  new Congo.Schema({
     schema: String
 });
 
-// TODO nested objects/schemas
 /*var user = {
     _items: [Array],
     region: String,
@@ -42,7 +41,7 @@ var ary = {a: String, b: Number};
 
 var user = {
     array: Array,
-    string: String,
+    string: {type: String, validate: function () {return true;}},
     number: Number,
     object: Object,
     date: Date,
@@ -59,8 +58,10 @@ var user = {
     
     arrayNested: [ary],
     
-    objectArray: Array // TODO this won't work, cause the field names are not recognized (ex. 'objectArray.$.key': 'value') 
-    //objectArray: [{collection: Object}]
+    test: [String]
+    
+    //objectArray: [Object] // TODO this won't work, cause the field names are not recognized (ex. 'objectArray.$.key': 'value') 
+    
 };
 
 var userIndexes = [
@@ -82,40 +83,6 @@ Congo.connect('crm2', function (err, db) {
     if (err) {
         throw new Error(err);
     }
-    
-    var query = {};
-    var options = {};
-    var callback = function (err) {};
-    
-    var document = {
-        //$set: {
-            //array: ['ItemA', 'ItemB'],
-            string: 'string swing',
-            //number: 1,
-            //object: {attr1: 'A', attr2: 'B'},
-            //date: new Date(),
-            //nestedSchema: {
-            //    trucken: {
-            //        nested: 'trucken doch'
-            //    }
-            //},
-            crazy: [
-                {
-                    schema: {
-                        schema: 'schema'
-                    }
-                },
-                {
-                    object: {some: 'data'}
-                }
-            ],
-            arrayNested: [{a: 'A', b: 2}]
-            //'objectArray[7].collection': 'trucken1',
-            //'objectArray.$.collection': 'trucken2',
-            //'objectArray.$': 'trucken3'
-        //}
-        //$push: {_items: 'value'},
-    };
     
     /*var document = {
         //$set: {lname: 'value'},
@@ -144,7 +111,51 @@ Congo.connect('crm2', function (err, db) {
         $unset: {field3: 'value'},
         $inc: {field2: 'value'},
         $bit: { field10: { and: 5 } }
-    };*/
+    };
+    var document = {
+        //$set: {
+            array: ['ItemA', 'ItemB', 2],
+            string: 'string swing',
+            //number: 1,
+            //object: {attr1: 'A', attr2: 'B'},
+            //date: new Date(),
+            //nestedSchema: {
+            //    trucken: {
+            //        nested: 'trucken doch'
+            //    }
+            //},
+            crazy: [
+                {
+                    schema: {
+                        schema: 'schema'
+                    }
+                },
+                {
+                    object: {some: 'data'}
+                }
+            ],
+            //arrayNested: [{a: 'A', b: 2}],
+            test: 's'
+            //'objectArray[7].collection': 'trucken1',
+            //'objectArray.$.collection': 'trucken2',
+            //'objectArray.$': 'trucken3'
+        //}
+        //$push: {_items: 'value'},
+    };
+*/
+    
+    var query = {};
+    var options = {};
+    var callback = function (err) {};
+    
+    var document = {
+        array: ['ItemA', 'ItemB', 2],
+        test: 's',
+        crazy: [
+            {schema: {schema: 'schema'}},
+            {object: {some: 'data'}}
+        ]
+    };
     
     var myModel = db.model('users', userSchema);
     
@@ -153,11 +164,13 @@ Congo.connect('crm2', function (err, db) {
         console.log('INSERT: ' + (err ? err : 'ok'));
         
         if (!err) {
+            
             myModel.remove({}, function (err) {
                 
                 console.log('REMOVE: ' + (err ? err.err : 'ok'));
                 db.close();
             });
+            
         } else {
             db.close();
         }
