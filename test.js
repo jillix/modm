@@ -47,20 +47,15 @@ var user = {
     date: Date,
     nestedSchema: {trucken: nested},
     schema: nested,
-    
     arrayObject: [{a: Number, b:Number}],
     arraySchema: [nested],
-    
     crazy: [{
         object: Object,
         schema: nested
     }],
-    
     arrayNested: [ary],
-    
-    test: [String]
-    
-    //objectArray: [Object] // TODO this won't work, cause the field names are not recognized (ex. 'objectArray.$.key': 'value') 
+    test: [String],
+    objectArray: [Object]
     
 };
 
@@ -150,11 +145,13 @@ Congo.connect('crm2', function (err, db) {
     
     var document = {
         array: ['ItemA', 'ItemB', 2],
-        test: 's',
+        test: 'testschten doch',
         crazy: [
             {schema: {schema: 'schema'}},
             {object: {some: 'data'}}
-        ]
+        ],
+        objectArray: {ttest: 1},
+        arrayObject: [{a: 1, b: 2}]
     };
     
     var myModel = db.model('users', userSchema);
