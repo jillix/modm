@@ -57,7 +57,10 @@ var user = {
         schema: nested
     }],
     
-    arrayNested: [ary]
+    arrayNested: [ary],
+    
+    objectArray: Array // TODO this won't work, cause the field names are not recognized (ex. 'objectArray.$.key': 'value') 
+    //objectArray: [{collection: Object}]
 };
 
 var userIndexes = [
@@ -87,7 +90,7 @@ Congo.connect('crm2', function (err, db) {
     var document = {
         //$set: {
             //array: ['ItemA', 'ItemB'],
-            //string: 'string swing',
+            string: 'string swing',
             //number: 1,
             //object: {attr1: 'A', attr2: 'B'},
             //date: new Date(),
@@ -107,8 +110,9 @@ Congo.connect('crm2', function (err, db) {
                 }
             ],
             arrayNested: [{a: 'A', b: 2}]
-            //'objectArray.[7].collection': 'trucken1',
-            //'objectArray.$.collection': 'trucken2'
+            //'objectArray[7].collection': 'trucken1',
+            //'objectArray.$.collection': 'trucken2',
+            //'objectArray.$': 'trucken3'
         //}
         //$push: {_items: 'value'},
     };
@@ -148,11 +152,15 @@ Congo.connect('crm2', function (err, db) {
         
         console.log('INSERT: ' + (err ? err : 'ok'));
         
-        myModel.remove({}, function (err) {
-            
-            console.log('REMOVE: ' + (err ? err.err : 'ok'));
+        if (!err) {
+            myModel.remove({}, function (err) {
+                
+                console.log('REMOVE: ' + (err ? err.err : 'ok'));
+                db.close();
+            });
+        } else {
             db.close();
-        });
+        }
     });
     
     /*myModel.remove(query);
