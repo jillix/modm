@@ -56,7 +56,6 @@ var user = {
     arrayNested: [ary],
     test: [String],
     objectArray: [Object]
-    
 };
 
 var userIndexes = [
@@ -107,37 +106,7 @@ Congo.connect('crm2', function (err, db) {
         $inc: {field2: 'value'},
         $bit: { field10: { and: 5 } }
     };
-    var document = {
-        //$set: {
-            array: ['ItemA', 'ItemB', 2],
-            string: 'string swing',
-            //number: 1,
-            //object: {attr1: 'A', attr2: 'B'},
-            //date: new Date(),
-            //nestedSchema: {
-            //    trucken: {
-            //        nested: 'trucken doch'
-            //    }
-            //},
-            crazy: [
-                {
-                    schema: {
-                        schema: 'schema'
-                    }
-                },
-                {
-                    object: {some: 'data'}
-                }
-            ],
-            //arrayNested: [{a: 'A', b: 2}],
-            test: 's'
-            //'objectArray[7].collection': 'trucken1',
-            //'objectArray.$.collection': 'trucken2',
-            //'objectArray.$': 'trucken3'
-        //}
-        //$push: {_items: 'value'},
-    };
-*/
+    */
     
     var query = {};
     var options = {};
@@ -158,47 +127,18 @@ Congo.connect('crm2', function (err, db) {
     
     myModel.insert(document, function (err) {
         
-        console.log('INSERT: ' + (err ? err : 'ok'));
-        
-        if (!err) {
-            
-            myModel.remove({}, function (err) {
-                
-                console.log('REMOVE: ' + (err ? err.err : 'ok'));
-                db.close();
-            });
-            
-        } else {
-            db.close();
+        if (err) {
+            console.log(err);
+            return db.close();
         }
+        
+        myModel.remove({}, function (err) {
+            
+            if (err) {
+                console.log(err);
+            }
+            
+            db.close();
+        });
     });
-    
-    /*myModel.remove(query);
-    myModel.rename();
-    myModel.save(query, document);
-    myModel.update(query, document, options);
-    myModel.distinct();
-    myModel.count(query);
-    myModel.drop();
-    myModel.findAndModify(query, document);
-    myModel.findAndRemove(query);
-    myModel.find(query);
-    myModel.findOne(query);
-    myModel.createIndex();
-    myModel.ensureIndex();
-    myModel.indexInformation();
-    myModel.dropIndex();
-    myModel.dropAllIndexes();
-    myModel.reIndex();
-    myModel.mapReduce();
-    myModel.group();
-    myModel.options();
-    myModel.isCapped();
-    myModel.indexExists();
-    myModel.geoNear();
-    myModel.geoHaystackSearch();
-    myModel.indexes();
-    myModel.aggregate();
-    myModel.stats();
-    */
 });
