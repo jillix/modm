@@ -1,5 +1,3 @@
-// nativ types
-
 exports.string = function (obj) {
     
     return String;

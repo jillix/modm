@@ -1,8 +1,8 @@
-var Bongo = require('bongo');
+var Pongo = require('pongo');
 var Schema = require('./lib/schema');
 var Model = require('./lib/model').Model;
 var options;
-var bongo;
+var pongo;
 
 exports.Schema = Schema;
 
@@ -24,11 +24,11 @@ function createModel (colName, schema) {
 
 exports.connect = function (dbName, callback) {
     
-    if (!bongo) {
-        bongo = new Bongo(options);
+    if (!pongo) {
+        pongo = new Pongo(options);
     }
     
-    bongo.connect(dbName, function (err, db) {
+    pongo.connect(dbName, function (err, db) {
         
         if (err) {
             return callback(err);
