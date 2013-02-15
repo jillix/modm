@@ -1,4 +1,4 @@
 MODM
 =======
 
-A mongodb Object Document Mapper (ODM)
+Mongodb Object Document Mapper
