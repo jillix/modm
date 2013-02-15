@@ -1,6 +1,6 @@
 var Bongo = require('bongo');
-var Schema = require('./schema');
-var Model = require('./model').Model;
+var Schema = require('./lib/schema');
+var Model = require('./lib/model').Model;
 var options;
 var bongo;
 
