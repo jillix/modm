@@ -1,6 +1,6 @@
 var modm = require('../index');
 
-module.exports = new modm.Schema({string: {
+var Schema = new modm.Schema({string: {
         
     type: String,
     required: true,
@@ -9,3 +9,10 @@ module.exports = new modm.Schema({string: {
     //validate: function () {}
 
 }});
+
+var test1 = {string: ''};
+
+module.exports = function (db, callback) {
+    var document = db.model('string', Schema);
+    document.insert(test1, callback);
+}

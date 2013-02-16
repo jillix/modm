@@ -1,35 +1,34 @@
-var _String = require('./string');
-var _Number = require('./number');
-var _Array = require('./array');
-var _Object = require('./object');
+// TODO make an example for every type, with all options
+var string = require('./string');
+var number = require('./number');
+var array = require('./array');
+var object = require('./object');
 
 var modm = require('../index');
 modm.setOptions({server: {poolSize: 2}, db: {w: 1}});
 modm.connect('crm2', function (err, db) {
     
-    // TODO make an example for every type, with all options
+    if (err) {
+        throw err;
+    }
     
     // string
-    var strings = db.model('dev', _String);
-    strings.insert({string: ''}, function () {
-        console.log(arguments);
+    string(db, function (err, result) {
+        console.log(err || result);
     });
     
     // number
-    var numbers = db.model('dev', _Number);
-    numbers.insert({number: 1}, function () {
-        console.log(arguments);
+    number(db, function (err, result) {
+        console.log(err || result);
     });
     
     // array
-    var arrays = db.model('dev', _Array);
-    arrays.insert({array: []}, function () {
-        console.log(arguments);
+    array(db, function (err, result) {
+        console.log(err || result);
     });
     
     // object
-    var objects = db.model('dev', _Object);
-    objects.insert({object: {}}, function () {
-        console.log(arguments);
+    object(db, function (err, result) {
+        console.log(err || result);
     });
 });
