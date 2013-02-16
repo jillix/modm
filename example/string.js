@@ -12,7 +12,7 @@ var Schema = new modm.Schema({string: {
 
 var test1 = {string: ''};
 
-module.exports = function (db, callback) {
-    var document = db.model('string', Schema);
+module.exports = function (model, callback) {
+    var document = model('string', Schema);
     document.insert(test1, callback);
 }

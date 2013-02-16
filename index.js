@@ -1,42 +1,71 @@
+/*
+// schema definition
+schema = modm.schema({schemen: 'doch'});
+
+// db connection settings and options
+model = modm('crm2', {host: '', port: '', ..});
+
+// collection
+truckens = model('truckens', schema);
+
+// connect and operation
+truckens.insert({data: 1}, function () {});
+*/
+
 var Pongo = require('pongo');
 var Schema = require('./lib/schema');
-var Model = require('./lib/model').Model;
-var options;
-var pongo;
+var Model = require('./lib/model');
 
-exports.Schema = Schema;
-
-exports.setOptions = function (opts) {
-    
-    if (options) {
-        throw new Error('DB Options already set.');
+function execCallbacks (callbacks, err, db) {
+    for (var i = 0, l = callbacks.length; i < l; ++i) {
+        callbacks[i](err, db);
     }
-    
-    options = opts;
-};
-
-function createModel (colName, schema) {
-    
-    var model = new Model(colName, schema, this);
-    
-    return model;
 }
 
-exports.connect = function (dbName, callback) {
+function modm (dbName, options) {
     
-    if (!pongo) {
-        pongo = new Pongo(options);
-    }
+    var callbacks = [];
     
-    pongo.connect(dbName, function (err, db) {
-        
-        if (err) {
-            return callback(err);
+    var db = {
+        name: dbName,
+        options: options,
+        driver: new Pongo(options),
+        connection: null,
+        connect: function (callback) {
+            
+            // db is connected
+            if (this.connection) {
+                return callback(null, this.connection);
+            }
+            
+            callbacks.push(callback);
+            
+            // no connection established
+            if (this.connection === null) {
+                this.connection = false;
+                
+                var self = this;
+                this.driver.connect(this.name, function (err, db) {
+                    
+                    if (err) {
+                        self.connection = null;
+                        execCallbacks(callbacks, err);
+                        return callbacks = [];
+                    }
+                    
+                    self.connection = db;
+                    execCallbacks(callbacks, null, db);
+                    return callbacks = [];
+                });
+            }
         }
-        
-        db.autoIndex = options.autoIndex || false;
-        db.model = createModel;
-        
-        callback(null, db);
-    });
-};
+    };
+    
+    return function (collection, schema) {
+        return Model(db, collection, schema);
+    };
+}
+
+modm.Schema = Schema;
+
+module.exports = modm;

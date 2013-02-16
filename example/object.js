@@ -8,7 +8,7 @@ var Schema = new modm.Schema({object: {
 
 var test1 = {object: {}};
 
-module.exports = function (db, callback) {
-    var document = db.model('number', Schema);
+module.exports = function (model, callback) {
+    var document = model('object', Schema);
     document.insert(test1, callback);
 }
