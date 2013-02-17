@@ -1,15 +1,24 @@
 /*
-// schema definition
-schema = modm.schema({schemen: 'doch'});
+var modm = require('modm');
 
-// db connection settings and options
-model = modm('crm2', {host: '', port: '', ..});
+// define a schema
+schema = modm.schema({field: String});
 
-// collection
-truckens = model('truckens', schema);
+// create db connection
+model = modm('myDb', {
+    host: '127.0.0.1',
+    port: 27017,
+    server: {pooSize: 5},
+    db: {w: 1}
+});
 
-// connect and operation
-truckens.insert({data: 1}, function () {});
+// get collection
+myCollection = model('myCollection', schema);
+
+// db operations
+myCollection.insert({data: 1}, function (err, item) {
+    
+});
 */
 
 var Pongo = require('pongo');
@@ -47,14 +56,8 @@ function modm (dbName, options) {
                 var self = this;
                 this.driver.connect(this.name, function (err, db) {
                     
-                    if (err) {
-                        self.connection = null;
-                        execCallbacks(callbacks, err);
-                        return callbacks = [];
-                    }
-                    
-                    self.connection = db;
-                    execCallbacks(callbacks, null, db);
+                    self.connection = err ? null : db;
+                    execCallbacks(callbacks, err, db);
                     return callbacks = [];
                 });
             }
