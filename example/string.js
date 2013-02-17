@@ -8,7 +8,9 @@ var Schema = new modm.Schema({string: {
     post: 'cken',
     //validate: function () {}
 
-}});
+}}, [{
+    fields: ['string']
+}]);
 
 var test1 = {string: ''};
 
