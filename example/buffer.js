@@ -1,21 +1,21 @@
 var modm = require('../index');
 
-var Schema = new modm.Schema({number: {
+var Schema = new modm.Schema({buffer: {
         
-    type: Number,
+    type: Buffer,
     required: true,
-    max: 5,
-    min: -3,
-    default: 0
+    default: new Buffer('buffer data'),
+    maxLength: 512,
+    minLength: 128
     //validate: function () {},
     //manipulate: function () {},
     //live: true
 
 }});
 
-var test1 = {number: 1};
+var test1 = {buffer: new Buffer(0)};
 
 module.exports = function (model, callback) {
-    var document = model('number', Schema);
+    var document = model('buffer', Schema);
     document.insert(test1, callback);
 }

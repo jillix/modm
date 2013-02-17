@@ -2,7 +2,12 @@ var modm = require('../index');
 
 var Schema = new modm.Schema({object: {
         
-    type: Object
+    type: Object,
+    required: true,
+    default: {a: 'b'}
+    //validate: function () {},
+    //manipulate: function () {},
+    //live: true
 
 }});
 

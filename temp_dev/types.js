@@ -35,19 +35,7 @@ exports.buffer = function (obj) {
     return Buffer;
 };
 
-// custom types
-
-exports.documentarray = function (obj) {
-    
-    return obj;
-};
-
 exports.objectid = function (obj) {
-    
-    return obj;
-};
-
-exports.mixed = function (obj) {
     
     return obj;
 };

@@ -1,21 +1,19 @@
 var modm = require('../index');
 
-var Schema = new modm.Schema({number: {
+var Schema = new modm.Schema({date: {
         
-    type: Number,
+    type: Date,
     required: true,
-    max: 5,
-    min: -3,
-    default: 0
+    default: new Date()
     //validate: function () {},
     //manipulate: function () {},
     //live: true
-
+    
 }});
 
-var test1 = {number: 1};
+var test1 = {date: new Date()};
 
 module.exports = function (model, callback) {
-    var document = model('number', Schema);
+    var document = model('date', Schema);
     document.insert(test1, callback);
 }

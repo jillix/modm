@@ -6,7 +6,12 @@ var Schema = new modm.Schema({string: {
     required: true,
     pre: 'tru',
     post: 'cken',
-    //validate: function () {}
+    charStyle: 'normal', // normal | uppercase | lowercase
+    trim: true,
+    default: 'default'
+    //validate: function () {},
+    //manipulate: function () {},
+    //live: true
 
 }}, [{
     fields: ['string']
