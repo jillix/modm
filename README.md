@@ -24,3 +24,6 @@ Mongodb Object Document Mapper
     myCollection.insert({data: 1}, function (err, item) {
        //... 
     });
+
+####Info
+Results of atomic operations are not validated.
