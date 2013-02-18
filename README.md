@@ -27,3 +27,19 @@ Mongodb Object Document Mapper
 
 ####Info
 Results of atomic operations are not validated.
+
+####Schema options
+    type: String, // Array | Boolean | Buffer | Date | Number | Object | ObjectID
+    required: true, // false
+    default: 'default' // default value
+    validate: function () {}, // email, url, ...
+    manipulate: function () {},
+    live: true, // false
+    pre: 'pre', // "string"
+    post: 'post', // "string"
+    charStyle: 'normal', // uppercase | lowercase
+    trim: true, // false
+    maxLength: 5, // integer
+    minLength: 1, // integer
+    max: 5, // number
+    min: -3 // number
