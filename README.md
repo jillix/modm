@@ -34,7 +34,6 @@ Results of atomic operations are not validated.
     default: 'default' // default value
     validate: function () {}, // email, url, ...
     manipulate: function () {},
-    live: true, // false
     pre: 'pre', // "string"
     post: 'post', // "string"
     charStyle: 'normal', // uppercase | lowercase
@@ -42,4 +41,7 @@ Results of atomic operations are not validated.
     maxLength: 5, // integer
     minLength: 1, // integer
     max: 5, // number
-    min: -3 // number
+    min: -3, // number
+    
+    //coming soon...
+    live: true // false
