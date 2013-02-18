@@ -4,13 +4,17 @@ var Schema = new modm.Schema({string: {
         
     type: String,
     required: true,
-    pre: 'tru',
-    post: 'cken',
+    pre: '  tru',
+    post: 'cken  ',
     charStyle: 'uppercase', // normal | uppercase | lowercase
     trim: true,
-    default: 'default'
-    //validate: function () {},
-    //manipulate: function () {},
+    default: 'default',
+    validate: function (value) {
+        return true;
+    },
+    manipulate: function (value) {
+        return value;//'this is a manipulated value. and this is the original value: ' + value;
+    }
     //live: true
 
 }}, [{
