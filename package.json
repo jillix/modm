@@ -1,0 +1,29 @@
+{
+    "name": "modm",
+    "version": "0.1.0",
+    "author": "Adrian Ottiker <adrian@ottiker.com>",
+    "description": "A MongoDB Object Document Mapper (ODM)",
+    "contributors": [ 
+        {
+            "name": "Adrian Ottiker",
+            "email": "adrian@ottiker.com"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jillix/modm.git"
+    },
+    "keywords": [
+        "mongodb",
+        "orm",
+        "object",
+        "document",
+        "mapper"
+    ],
+    "dependencies" : {
+        "pongo": "*"
+    },
+    "engine": {
+        "node": ">=0.8"
+    }
+}
