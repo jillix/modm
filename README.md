@@ -7,7 +7,7 @@ Mongodb Object Document Mapper
     var modm = require('modm');
 
     // define a schema
-    schema = modm.schema({field: String});
+    schema = new modm.Schema({field: String});
     
     // create db connection
     model = modm('myDb', {
