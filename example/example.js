@@ -17,40 +17,55 @@ var model = modm('crm2', {
 
 // string
 string(model, function (err, result) {
+    console.log('string');
     console.log(err || result);
+    console.log('------------------------');
 });
 
 // number
 number(model, function (err, result) {
+    console.log('number');
     console.log(err || result);
+    console.log('------------------------');
 });
 
 // array
 array(model, function (err, result) {
+    console.log('array');
     console.log(err || result);
+    console.log('------------------------');
 });
 
 // object
 object(model, function (err, result) {
+    console.log('object');
     console.log(err || result);
+    console.log('------------------------');
 });
 
 // boolean
 boolean(model, function (err, result) {
+    console.log('boolean');
     console.log(err || result);
+    console.log('------------------------');
 });
 
 // buffer
 buffer(model, function (err, result) {
+    console.log('buffer');
     console.log(err || result);
+    console.log('------------------------');
 });
 
 // objectid
 objectid(model, function (err, result) {
+    console.log('objectid');
     console.log(err || result);
+    console.log('------------------------');
 });
 
 // date
 date(model, function (err, result) {
+    console.log('date');
     console.log(err || result);
 });

@@ -13,7 +13,7 @@ var Schema = new modm.Schema({number: {
 
 }});
 
-var test1 = {number: 1};
+var test1 = {number: NaN};
 
 module.exports = function (model, callback) {
     var document = model('number', Schema);
