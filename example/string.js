@@ -25,5 +25,8 @@ var test1 = {string: ''};
 
 module.exports = function (model, callback) {
     var document = model('string', Schema);
+    
     document.insert(test1, callback);
+    
+    console.log('STRING FIND: ' + typeof document.find());
 }
