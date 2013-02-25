@@ -5,7 +5,7 @@ var Schema = new modm.Schema({number: {
     type: Number,
     required: true,
     max: 5,
-    min: -3,
+    min: 0,
     default: 0
     //validate: function () {},
     //manipulate: function () {},
@@ -13,7 +13,7 @@ var Schema = new modm.Schema({number: {
 
 }});
 
-var test1 = {number: 1};
+var test1 = {number: -5};
 
 module.exports = function (model, callback) {
     var document = model('number', Schema);

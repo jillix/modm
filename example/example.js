@@ -1,13 +1,13 @@
 var modm = require('../index');
 
-var string = require('./string');
+//var string = require('./string');
 var number = require('./number');
-var array = require('./array');
-var object = require('./object');
-var boolean = require('./boolean');
-var buffer = require('./buffer');
-var objectid = require('./objectid');
-var date = require('./date');
+//var array = require('./array');
+//var object = require('./object');
+//var boolean = require('./boolean');
+//var buffer = require('./buffer');
+//var objectid = require('./objectid');
+//var date = require('./date');
 
 var model = modm('crm2', {
     autoIndex: true,
@@ -16,12 +16,13 @@ var model = modm('crm2', {
 });
 
 // string
-string(model, function (err, result) {
-    console.log('------------------------------------------------');
-    console.log('string');
-    console.log(err || result);
-    
-});
+/*setTimeout(function () {
+    string(model, function (err, result) {
+        console.log('------------------------------------------------');
+        console.log('string');
+        console.log(err || result);
+    });
+}, 1000);*/
 
 // number
 number(model, function (err, result) {
@@ -31,7 +32,7 @@ number(model, function (err, result) {
 });
 
 // array
-array(model, function (err, result) {
+/*array(model, function (err, result) {
     console.log('------------------------------------------------');
     console.log('array');
     console.log(err || result);
@@ -70,4 +71,4 @@ date(model, function (err, result) {
     console.log('------------------------------------------------');
     console.log('date');
     console.log(err || result);
-});
+});*/

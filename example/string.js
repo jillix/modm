@@ -28,5 +28,5 @@ module.exports = function (model, callback) {
     
     document.insert(test1, callback);
     
-    console.log('STRING FIND: ' + typeof document.find());
+    //console.log('STRING FIND: ' + typeof document.find({}, {_id: 0}));
 }
