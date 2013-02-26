@@ -13,7 +13,9 @@ var Schema = new modm.Schema({buffer: {
 
 }});
 
-var test1 = {buffer: new Buffer(0)};
+var buffer = new Buffer(256);
+
+var test1 = {buffer: new Buffer(256)};
 
 module.exports = function (model, callback) {
     var document = model('buffer', Schema);

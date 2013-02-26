@@ -15,7 +15,7 @@ var Schema = new modm.Schema({array: {
 
 }});
 
-var test1 = {array: []};
+var test1 = {array: ['1', '2', '3']};
 
 module.exports = function (model, callback) {
     var document = model('array', Schema);
