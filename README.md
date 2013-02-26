@@ -24,6 +24,29 @@ Mongodb Object Document Mapper
     myCollection.insert({data: 1}, function (err, item) {
        //... 
     });
+    
+####Example with connect
+    var modm = require('modm');
+
+    // define a schema
+    schema = new modm.Schema({field: String});
+    
+    // create db connection
+    model = modm('myDb', {
+        server: {pooSize: 2},
+        db: {w: 1}
+    });
+    
+    // get collection
+    myCollection = model('myCollection', schema);
+    
+    // connect first, otherwise find will return undefined
+    model.connect(function (err, db) {
+        var cursor = myCollection.find();
+        cursor.toArray(function () {
+            //...
+        })
+    })
 
 ####Info
 Results of atomic operations are not validated.
