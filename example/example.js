@@ -1,6 +1,6 @@
 var modm = require('../index');
 
-//var string = require('./string');
+var string = require('./string');
 var number = require('./number');
 //var array = require('./array');
 //var object = require('./object');
@@ -15,14 +15,15 @@ var model = modm('crm2', {
     db: {w: 1}
 });
 
-// string
-/*setTimeout(function () {
+model.connect(function () {
+
+    // string
     string(model, function (err, result) {
         console.log('------------------------------------------------');
         console.log('string');
         console.log(err || result);
-    });
-}, 1000);*/
+    }); 
+});
 
 // number
 number(model, function (err, result) {
