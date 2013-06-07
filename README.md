@@ -3,7 +3,7 @@ MODM
 
 Mongodb Object Document Mapper
 
-####Basic example
+####Example
     var modm = require('modm');
 
     // define a schema
@@ -17,7 +17,7 @@ Mongodb Object Document Mapper
         db: {w: 1}
     });
     
-    // get collection
+    // get a collection
     myCollection = model('myCollection', schema);
     
     // db operations
@@ -25,28 +25,22 @@ Mongodb Object Document Mapper
        //... 
     });
     
-####Example with connect
-    var modm = require('modm');
-
-    // define a schema
-    schema = new modm.Schema({field: String});
-    
-    // create db connection
-    model = modm('myDb', {
-        server: {pooSize: 2},
-        db: {w: 1}
-    });
-    
-    // get collection
-    myCollection = model('myCollection', schema);
-    
     // connect first, otherwise find will return undefined
+    // instead of a cursor.
     model.connect(function (err, db) {
-        var cursor = myCollection.find();
+        var cursor = myCollection.find({/*query*/});
         cursor.toArray(function () {
             //...
-        })
-    })
+        });
+    });
+    
+    // ..or access the cursor in the callback
+    myCollection.find({/*query*/}, function (err, cursor) {
+        cursor.toArray(function () {
+            //...
+        });
+    });
+    
 
 ####Info
 Results of atomic operations are not validated.
@@ -66,5 +60,5 @@ Results of atomic operations are not validated.
     max: 5, // number
     min: -3, // number
     
-    //coming soon...
+    // not yet implemented..
     live: true // false
