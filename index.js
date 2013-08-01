@@ -30,6 +30,6 @@ function modm (dbName, options) {
 }
 
 modm.Schema = Schema;
-modm.ObjectId = Pongo.ObjectID;
+modm.ObjectId = Pongo.ObjectId;
 module.exports = modm;
 
