@@ -3,7 +3,7 @@ var modm = require('../index');
 var ObjectID = require('../node_modules/pongo/node_modules/mongodb').ObjectID;
 
 var Schema = new modm.Schema({objectid: {
-        
+
     type: ObjectID,
     required: true,
     default: new ObjectID()

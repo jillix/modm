@@ -1,7 +1,7 @@
 var modm = require('../index');
 
 var Schema = new modm.Schema({number: {
-        
+
     type: Number,
     required: true,
     max: 5,

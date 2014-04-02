@@ -1,14 +1,14 @@
 var modm = require('../index');
 
 var Schema = new modm.Schema({array: {
-        
+
     type: Array,
     required: true,
     default: ['a', 'b'],
     //validate: function () {},
     //manipulate: function () {},
     //live: true,
-    
+
     // INFO only the input gets validated, not the result of an atomic operation
     maxLength: 5,
     minLength: 1

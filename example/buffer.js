@@ -1,7 +1,7 @@
 var modm = require('../index');
 
 var Schema = new modm.Schema({buffer: {
-        
+
     type: Buffer,
     required: true,
     default: new Buffer('buffer data'),
