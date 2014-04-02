@@ -10,7 +10,7 @@ var modm = require('modm');
 
 // define a schema
 schema = new modm.Schema({field: String});
-    
+
 // create db connection
 model = modm('myDb', {
     host: '127.0.0.1',
@@ -18,15 +18,15 @@ model = modm('myDb', {
     server: {pooSize: 5},
     db: {w: 1}
 });
-    
+
 // get a collection
 myCollection = model('myCollection', schema);
 
 // db operations
 myCollection.insert({data: 1}, function (err, item) {
-   //... 
+   //...
 });
-    
+
 // connect first, otherwise find will return undefined
 // instead of a cursor.
 model.connect(function (err, db) {
@@ -35,7 +35,7 @@ model.connect(function (err, db) {
         //...
     });
 });
-    
+
 // ..or access the cursor in the callback
 myCollection.find({/*query*/}, function (err, cursor) {
     cursor.toArray(function () {
@@ -130,7 +130,7 @@ Results of atomic operations are not validated.
         </tr>
     </tbody>
 </table>
-    
+
 ## License
 
 "THE BEER-WARE LICENSE" (Revision 42):

@@ -1,7 +1,7 @@
 var modm = require('../index');
 
 var Schema = new modm.Schema({boolean: {
-        
+
     type: Boolean,
     required: true,
     default: false

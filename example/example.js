@@ -22,7 +22,7 @@ model.connect(function () {
         console.log('------------------------------------------------');
         console.log('string');
         console.log(err || result);
-    }); 
+    });
 });
 
 // number

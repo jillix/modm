@@ -3,7 +3,7 @@
     "version": "0.2.2",
     "author": "Adrian Ottiker <adrian@ottiker.com>",
     "description": "A MongoDB Object Document Mapper (ODM)",
-    "contributors": [ 
+    "contributors": [
         {
             "name": "Adrian Ottiker",
             "email": "adrian@ottiker.com"
