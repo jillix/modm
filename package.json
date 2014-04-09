@@ -21,7 +21,8 @@
         "mapper"
     ],
     "dependencies" : {
-        "pongo": "*"
+        "pongo": "*",
+        "moment": "*"
     },
     "engine": {
         "node": ">=0.8"
