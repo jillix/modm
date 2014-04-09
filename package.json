@@ -1,6 +1,6 @@
 {
     "name": "modm",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "author": "Adrian Ottiker <adrian@ottiker.com>",
     "description": "A MongoDB Object Document Mapper (ODM)",
     "contributors": [
@@ -21,7 +21,8 @@
         "mapper"
     ],
     "dependencies" : {
-        "pongo": "*"
+        "pongo": "*",
+        "moment": "*"
     },
     "engine": {
         "node": ">=0.8"

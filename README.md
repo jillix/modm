@@ -85,18 +85,23 @@ Results of atomic operations are not validated.
         </tr>
         <tr>
             <td><code>pre</code></td>
-            <td><code>"pre"</code></td>
-            <td></td>
+            <td><code>"my prefix "</code></td>
+            <td>A string to prefix the value</td>
         </tr>
         <tr>
             <td><code>post</code></td>
-            <td><code>"post"</code></td>
-            <td></td>
+            <td><code>" my suffix"</code></td>
+            <td>A string to suffix the value</td>
         </tr>
         <tr>
             <td><code>charStyle</code></td>
             <td><code>"normal"</code></td>
             <td>Possible values: <code>"normal"</code>, <code>"uppercase"</code>, <code>"lowercase"</code></td>
+        </tr>
+        <tr>
+            <td><code>parse</code></td>
+            <td><code>DD.MM.YYY</code></td>
+            <td>For `date` types only. A string value passed if available to the Moment.js date parser.</td>
         </tr>
         <tr>
             <td><code>trim</code></td>
