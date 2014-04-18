@@ -22,7 +22,7 @@
     ],
     "dependencies" : {
         "pongo": "*",
-        "moment": "*"
+        "moment": "2.6.0"
     },
     "engine": {
         "node": ">=0.8"
