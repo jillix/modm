@@ -33,8 +33,9 @@
         "mapper"
     ],
     "dependencies" : {
-        "pongo": "*",
-        "moment": "2.6.0"
+        "jxutils": "*",
+        "moment": "2.6.0",
+        "pongo": "*"
     },
     "engine": {
         "node": ">=0.8"
