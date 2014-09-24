@@ -1,29 +1,32 @@
 var modm = require("../index");
 
-var Schema = new modm.Schema({string: {
-
-    type: String,
-    required: true,
-    pre: "  tru",
-    post: "cken  ",
-    charStyle: "uppercase", // normal | uppercase | lowercase
-    trim: true,
-    default: "default",
-    validate: function (value) {
-        return true;
-    },
-    manipulate: function (value) {
-        return value;//"this is a manipulated value. and this is the original value: " + value;
+var Schema = new modm.Schema({
+    string: {
+        type: String,
+        required: true,
+        pre: "  tru",
+        post: "cken  ",
+        charStyle: "uppercase", // normal | uppercase | lowercase
+        trim: true,
+        default: "default",
+        validate: function(value) {
+            return true;
+        },
+        manipulate: function(value) {
+            //"this is a manipulated value. and this is the original value: " + value;
+            return value;
+        }
+        //live: true
     }
-    //live: true
-
-}}, [{
+}, [{
     fields: ["string"]
 }]);
 
-var test1 = {string: ""};
+var test1 = {
+    string: ""
+};
 
-module.exports = function (model, callback) {
+module.exports = function(model, callback) {
 
     var document = model("string", Schema);
 
