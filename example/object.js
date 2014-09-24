@@ -1,10 +1,10 @@
-var modm = require('../index');
+var modm = require("../index");
 
 var Schema = new modm.Schema({object: {
 
     type: Object,
     required: true,
-    default: {a: 'b'}
+    default: {a: "b"}
     //validate: function () {},
     //manipulate: function () {},
     //live: true
@@ -14,6 +14,6 @@ var Schema = new modm.Schema({object: {
 var test1 = {object: {}};
 
 module.exports = function (model, callback) {
-    var document = model('object', Schema);
+    var document = model("object", Schema);
     document.insert(test1, callback);
-}
+};

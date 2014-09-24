@@ -1,6 +1,6 @@
 // TODO define objectid options
-var modm = require('../index');
-var ObjectID = require('mongodb').ObjectID;
+var modm = require("../index");
+var ObjectID = require("mongodb").ObjectID;
 
 var Schema = new modm.Schema({objectid: {
 
@@ -16,6 +16,6 @@ var Schema = new modm.Schema({objectid: {
 var test1 = {objectid: new ObjectID()};
 
 module.exports = function (model, callback) {
-    var document = model('objectid', Schema);
+    var document = model("objectid", Schema);
     document.insert(test1, callback);
-}
+};

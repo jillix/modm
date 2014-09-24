@@ -1,4 +1,4 @@
-var modm = require('../index');
+var modm = require("../index");
 
 var Schema = new modm.Schema({date: {
 
@@ -14,6 +14,6 @@ var Schema = new modm.Schema({date: {
 var test1 = {date: new Date()};
 
 module.exports = function (model, callback) {
-    var document = model('date', Schema);
+    var document = model("date", Schema);
     document.insert(test1, callback);
-}
+};

@@ -1,4 +1,4 @@
-var modm = require('../index');
+var modm = require("../index");
 
 var Schema = new modm.Schema({number: {
 
@@ -16,6 +16,6 @@ var Schema = new modm.Schema({number: {
 var test1 = {number: 5};
 
 module.exports = function (model, callback) {
-    var document = model('number', Schema);
+    var document = model("number", Schema);
     document.insert(test1, callback);
-}
+};
