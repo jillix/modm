@@ -17,6 +17,7 @@ function callbacks(err, db) {
     buffer.forEach(function (cBuff) {
         cBuff.apply(self, args);
     });
+    self.buffer = [];
 }
 
 function bufferCallback(callback) {
@@ -64,13 +65,12 @@ function modm(dbName, options) {
             return bufferCallback.call(self, callback);
         }
 
-        bufferCallback.call(self, callback);
-
         if (_clientCache[serverPath]) {
-            return callbacks.call(self, null, self.connection = _clientCache[serverPath].db(dbName));
+            return callback.call(self, null, self.connection = _clientCache[serverPath].db(dbName));
         }
 
         self._connecting = true;
+        bufferCallback.call(self, callback);
 
         self.driver.open(function(err, client) {
             if (err) {
