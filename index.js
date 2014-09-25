@@ -46,8 +46,12 @@ function modm(dbName, options) {
     var host = options.host || DEFAULT_HOST;
     var port = options.port || DEFAULT_PORT;
     var serverPath = [host, port].join(":");
+    var serverOptions = options.serverOptions || {
+        native_parser: true,
+        poolSize: 1
+    };
 
-    var server = new Server(host, port);
+    var server = new Server(host, port, serverOptions);
 
     db.driver = new MongoClient(server, options);
 
