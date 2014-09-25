@@ -8,6 +8,8 @@ const DEFAULT_HOST = "127.0.0.1";
 const DEFAULT_PORT = 27017;
 const DEFAULT_BUFFERSIZE = 100;
 
+var _serverCache = {};
+
 function callbacks(err, db) {
     var self = this;
     var buffer = self.buffer;
@@ -40,13 +42,23 @@ function modm(dbName, options) {
     db.buffer = [];
     db._dbName = dbName;
 
-    var server = new Server(options.host || "localhost", options.port || 27017);
+    debugger;
+    var host = options.host || DEFAULT_HOST;
+    var port = options.port || DEFAULT_PORT;
+    var serverPath = [host, port].join(":");
+    var server = Object(_serverCache[serverPath]).server || (
+        _serverCache[serverPath] = {
+            server: new Server(host, port)
+        }
+    ).server;
+
     db.driver = new MongoClient(server, options);
 
     db.connection = null;
     db.connect = function (callback) {
 
         var self = this;
+        debugger;
 
         // db is connected
         if (self.connection) {
@@ -57,8 +69,14 @@ function modm(dbName, options) {
             return bufferCallback.call(self, callback);
         }
 
-        self._connecting = true;
         bufferCallback.call(self, callback);
+
+        if (_serverCache[serverPath].client) {
+            debugger
+            return callbacks.call(self, null, self.connection = _serverCache[serverPath].client.db(dbName));
+        }
+
+        self._connecting = true;
 
         self.driver.open(function(err, client) {
             if (err) {
@@ -66,7 +84,9 @@ function modm(dbName, options) {
                 return callbacks.call(self, err);
             }
 
+            debugger;
             self._connecting = false;
+            _serverCache[serverPath].client = client;
             callbacks.call(self, null, self.connection = client.db(dbName));
         });
     };

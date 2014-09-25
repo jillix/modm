@@ -22,6 +22,15 @@ model.connect(function() {
         console.log("string");
         console.log(err || result);
     });
+
+    var model1 = modm("crm3", {
+        autoIndex: true,
+        server: { poolSize: 2 },
+        db: { w: 1 }
+    });
+    model1.connect(function (err, data) {
+        debugger
+    });
 });
 
 // number
