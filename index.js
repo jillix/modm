@@ -54,7 +54,6 @@ function modm(dbName, options) {
     db.connect = function (callback) {
 
         var self = this;
-        debugger;
 
         // db is connected
         if (self.connection) {
@@ -79,7 +78,6 @@ function modm(dbName, options) {
                 return callbacks.call(self, err);
             }
 
-            debugger;
             self._connecting = false;
             _clientCache[serverPath] = client;
             callbacks.call(self, null, self.connection = client.db(dbName));
