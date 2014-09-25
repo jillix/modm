@@ -28,9 +28,6 @@ model.connect(function() {
         server: { poolSize: 2 },
         db: { w: 1 }
     });
-    model1.connect(function (err, data) {
-        debugger
-    });
 });
 
 // number
