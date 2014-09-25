@@ -15,7 +15,7 @@ function callbacks(err, db) {
     var buffer = self.buffer;
     var args = arguments;
     buffer.forEach(function (cBuff) {
-        cBuff.apply(self, arguments);
+        cBuff.apply(self, args);
     });
 }
 
