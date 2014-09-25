@@ -1,4 +1,5 @@
 var Mongo = require("mongodb");
+
 var MongoClient = Mongo.MongoClient;
 var Server = Mongo.Server;
 var Schema = require("./lib/schema");
@@ -46,14 +47,19 @@ function modm(dbName, options) {
     var host = options.host || DEFAULT_HOST;
     var port = options.port || DEFAULT_PORT;
     var serverPath = [host, port].join(":");
-    var serverOptions = options.server || {
+
+    options.server = options.server || {
         native_parser: true,
         poolSize: 1
     };
 
-    var server = new Server(host, port, serverOptions);
+    options.db = options.db || {
+        w: 1
+    };
 
-    db.driver = new MongoClient(server, options);
+    var server = new Server(host, port, options.server);
+
+    db.driver = new MongoClient(server, options.db);
 
     db.connection = null;
     db.connect = function (callback) {
